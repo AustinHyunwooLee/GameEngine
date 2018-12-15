@@ -13,11 +13,15 @@ public class MainGameLoop {
 		
 		DisplayManager.createDisplay();
 		
+		//Vertices of the two triangles that create a square CCW
 		float[] position = {
-				-0.5f, 0.5f, 0,	//V1
-				0.5f, 0.5f, 0,	//V2
-				0.5f, -0.5f, 0,	//V3
-				-0.5f, -0.5f, 0	//V4
+				-0.5f, 0.5f, 0,		
+				-0.5f, -0.5f, 0,	
+				0.5f, 0.5f, 0,		
+				0.5f, 0.5f, 0,
+				-0.5f, -0.5f, 0,	
+				0.5f, -0.5f, 0,		
+				
 		};
 		
 		Loader loader = new Loader();
