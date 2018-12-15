@@ -15,17 +15,19 @@ public class MainGameLoop {
 		
 		//Vertices of the two triangles that create a square CCW
 		float[] position = {
-				-0.5f, 0.5f, 0,		
-				-0.5f, -0.5f, 0,	
-				0.5f, 0.5f, 0,		
-				0.5f, 0.5f, 0,
-				-0.5f, -0.5f, 0,	
-				0.5f, -0.5f, 0,		
-				
+				-0.5f, 0.5f, 0,		//V1
+				0.5f, 0.5f, 0,		//V2
+				0.5f, -0.5f, 0,		//V3
+				-0.5f, -0.5f, 0		//V4
+		};
+		
+		int[] indices = {
+				0, 3, 1,	//top triangle
+				1, 2, 3		//bottom triangle
 		};
 		
 		Loader loader = new Loader();
-		RawModel model = loader.loadToVao(position);
+		RawModel model = loader.loadToVao(position, indices);
 		Renderer renderer = new Renderer();
 		
 		while(!Display.isCloseRequested()) {
