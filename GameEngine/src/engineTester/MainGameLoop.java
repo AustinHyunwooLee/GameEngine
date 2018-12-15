@@ -31,7 +31,7 @@ public class MainGameLoop {
         };
          
         RawModel model = loader.loadToVAO(vertices,indices);
-         
+        System.out.println("HI");
         while(!Display.isCloseRequested()){
             //game logic
             renderer.prepare();
