@@ -5,8 +5,8 @@ package shader;
 public class StaticShader extends ShaderProgram{
      
 	//Paths of the program code
-    private static final String VERTEX_FILE = "src/shader/vertexShader.txt";
-    private static final String FRAGMENT_FILE = "src/shader/fragmentShader.txt";
+    private static final String VERTEX_FILE = "GameEngine/src/shader/vertexShader.txt";
+    private static final String FRAGMENT_FILE = "GameEngine/src/shader/fragmentShader.txt";
  
     public StaticShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
