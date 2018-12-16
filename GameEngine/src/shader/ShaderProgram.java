@@ -3,9 +3,13 @@ package shader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
- 
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
  
 public abstract class ShaderProgram {
 	
@@ -13,6 +17,7 @@ public abstract class ShaderProgram {
 	private int programID;
 	private int vertexShaderID;
 	private int fragmentShaderID;
+	private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
 	 
 	/**
 	 * Links the vertex and fragment code to the programID and loads the program so that the color of each
@@ -29,6 +34,18 @@ public abstract class ShaderProgram {
 	    bindAttributes();
 	    GL20.glLinkProgram(programID);
 	    GL20.glValidateProgram(programID);
+	    getAllUniformLocation();
+	}
+	
+	protected abstract void getAllUniformLocation();
+	
+	/**
+	 * Returns the id location of the uniform variable
+	 * @param variableName
+	 * @return
+	 */
+	protected int getUniformLocation(String variableName) {
+		return GL20.glGetUniformLocation(programID, variableName);
 	}
 	
 	/**
@@ -66,6 +83,48 @@ public abstract class ShaderProgram {
 	 */
 	protected void bindAttribute(int attribute, String variableName){
 	    GL20.glBindAttribLocation(programID, attribute, variableName);
+	}
+	
+	/**
+	 * Load a float value into a uniform matrix
+	 * @param location
+	 * @param value
+	 */
+	protected void loadFloat(int location, float value) {
+		GL20.glUniform1f(location, value);
+	}
+	
+	/** 
+	 * Loads a 3d vector into a uniform variable
+	 * @param location
+	 * @param vector
+	 */
+	protected void loadVector(int location, Vector3f vector) {
+		GL20.glUniform3f(location, vector.x, vector.y, vector.z);
+	}
+	
+	/**
+	 * Converts a boolean to a float of 1 or 0 into a uniform variable
+	 * @param location
+	 * @param value
+	 */
+	protected void loadBoolean(int location, boolean value) {
+		Float toLoad = 0f;
+		if(value) {
+			toLoad = 1f;
+		}
+		GL20.glUniform1f(location, toLoad);
+	}
+	
+	/**
+	 * Loads a matrix into a matrix buffer and loads it into a uniform variable
+	 * @param location
+	 * @param matrix
+	 */
+	protected void loadMatrix(int location, Matrix4f matrix) {
+		matrix.store(matrixBuffer);
+		matrixBuffer.flip();
+		GL20.glUniformMatrix4(location, false, matrixBuffer);
 	}
 	
 	/**
