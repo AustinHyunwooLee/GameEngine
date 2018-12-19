@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
 public class DisplayManager {
-	
+	//
 	//Resolution and FPS
 	private static final int WIDTH = 1280;
 	private static final int HEIGHT = 720;

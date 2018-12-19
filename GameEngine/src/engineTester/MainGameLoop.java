@@ -14,7 +14,7 @@ import shader.StaticShader;
 import textures.ModelTexture;
  
 public class MainGameLoop {
- 
+	
     public static void main(String[] args) {
  
         DisplayManager.createDisplay();
@@ -122,7 +122,7 @@ public class MainGameLoop {
 				23,21,22
 
 		};
-        
+        //Update
         RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
         ModelTexture modelTexture = new ModelTexture(loader.loadTexture("elephant"));
         TexturedModels texturedModel = new TexturedModels(model, modelTexture);

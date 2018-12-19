@@ -9,7 +9,7 @@ import toolbox.Maths;
   * An implementation of the ShaderProgram
   */
 public class StaticShader extends ShaderProgram{
-     
+     //
 	//Paths of the program code
     private static final String VERTEX_FILE = "GameEngine/src/shader/vertexShader.txt";
     private static final String FRAGMENT_FILE = "GameEngine/src/shader/fragmentShader.txt";

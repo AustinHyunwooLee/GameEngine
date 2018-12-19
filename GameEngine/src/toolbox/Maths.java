@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 import entities.Camera;
 
 public class Maths {
-	
+	//
 	/**
 	 * Creates a transformationMatrix 
 	 * @param translation Coordinate points that describe the initial position of the model
