@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
 public class Camera {
-	//
 	private Vector3f position = new Vector3f(0, 0, 0);
 	
 	// how high or low the camera is aimed

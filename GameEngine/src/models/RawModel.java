@@ -3,7 +3,6 @@ package models;
  * Keeps track of the vaoID and vertex count of a model
  */
 public class RawModel {
-//
 	private int vaoID;
 	private int vertexCount;
 	

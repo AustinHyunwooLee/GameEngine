@@ -5,7 +5,6 @@ import org.lwjgl.util.vector.Vector3f;
 import models.TexturedModels;
 
 public class Entity {
-	//
 	private TexturedModels model;
 	private Vector3f position;
 	private float rotX, rotY, rotZ;

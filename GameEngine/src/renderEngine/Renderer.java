@@ -36,7 +36,6 @@ public class Renderer {
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.stop();
 	}
-	//
 	/**
 	 * clears the colors of the window and resets
 	 */

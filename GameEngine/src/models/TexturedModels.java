@@ -3,7 +3,6 @@ package models;
 import textures.ModelTexture;
 
 public class TexturedModels {
-	//
 	private RawModel rawModel;
 	private ModelTexture texture;
 	

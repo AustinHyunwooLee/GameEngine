@@ -124,7 +124,6 @@ public class Loader {
 		buffer.flip();
 		return buffer;
 	}
-	//
 	/**
 	 * After the display is closed, delete the VAO and VBOs that were created
 	 */

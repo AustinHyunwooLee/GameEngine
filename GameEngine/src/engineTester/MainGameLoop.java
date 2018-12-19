@@ -122,7 +122,6 @@ public class MainGameLoop {
 				23,21,22
 
 		};
-        //Update
         RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
         ModelTexture modelTexture = new ModelTexture(loader.loadTexture("elephant"));
         TexturedModels texturedModel = new TexturedModels(model, modelTexture);
