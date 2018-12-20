@@ -15,24 +15,61 @@ public class Camera {
 	//How much tiltled
 	private float roll;
 	
+	private float speed = 0.25f;
+	private float degree = 1f;
+	
 	public Camera() {}
 	
 	/**
 	 * Changes the position of the camera depending on actions
 	 */
 	public void move() {
+		if(Keyboard.isKeyDown(Keyboard.KEY_COMMA)) {
+			speed = 2f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_PERIOD)) {
+			speed = 0.5f;
+		}
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			position.z -= 0.02f;
+			position.z -= speed * Math.cos(Math.toRadians(yaw));
+			position.x += speed * Math.sin(Math.toRadians(yaw));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			position.z += 0.02f;
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			position.x -= 0.02f;
+			position.z += speed * Math.cos(Math.toRadians(yaw));
+			position.x -= speed * Math.sin(Math.toRadians(yaw));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			position.x += 0.02f;
+			yaw += degree;
 		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			yaw -= degree;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+			position.z += speed * 1.5f * Math.sin(Math.toRadians(-yaw));
+			position.x -= speed * 1.5f * Math.cos(Math.toRadians(-yaw));
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_E)) {
+			position.z -= speed * 1.5f * Math.sin(Math.toRadians(-yaw));
+			position.x += speed * 1.5f *Math.cos(Math.toRadians(-yaw));
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_Z)) {
+			position.y += speed;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_X)) {
+			position.y -= speed;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_R)) {
+			this.pitch -= this.degree;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_F)) {
+			this.pitch += this.degree;
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_P)) {
+			System.exit(1);
+		}
+		
 	}
 
 	public Vector3f getPosition() {

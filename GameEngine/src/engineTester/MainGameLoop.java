@@ -136,7 +136,7 @@ public class MainGameLoop {
 //        	entity.increasePosition(0, 0, -.002f);
 //        	entity.increaseRotation(0, 0, 0);
             //game logic
-        	entity.increaseRotation(0, 0.9f, 0);
+//        	entity.increaseRotation(0, 0.9f, 0);
             renderer.prepare();
             shader.start();
             shader.loadViewMatrix(camera);
