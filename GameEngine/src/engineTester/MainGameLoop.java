@@ -5,6 +5,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import entities.Camera;
 import entities.Entity;
+import entities.Light;
 import models.RawModel;
 import models.TexturedModels;
 import renderEngine.DisplayManager;
@@ -129,6 +130,8 @@ public class MainGameLoop {
         ModelTexture modelTexture = new ModelTexture(loader.loadTexture("stallTexture"));
         TexturedModels texturedModel = new TexturedModels(model, modelTexture);
         Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -50), 0, 0, 0, 1f);
+        Light light = new Light(new Vector3f(0, 0, -20), new Vector3f(1, 1, 1));
+        
         
         while(!Display.isCloseRequested()){
         	camera.move();
@@ -136,10 +139,11 @@ public class MainGameLoop {
 //        	entity.increasePosition(0, 0, -.002f);
 //        	entity.increaseRotation(0, 0, 0);
             //game logic
-//        	entity.increaseRotation(0, 0.9f, 0);
+        	entity.increaseRotation(0, 0.9f, 0);
             renderer.prepare();
             shader.start();
             shader.loadViewMatrix(camera);
+            shader.loadLight(light);
             renderer.render(entity, shader);
             shader.stop();
             DisplayManager.updateDisplay();         

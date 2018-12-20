@@ -15,4 +15,8 @@ public class ModelTexture {
 		return textureID;
 	}
 
+	public void setTextureID(int textureID) {
+		this.textureID = textureID;
+	}
+
 }
