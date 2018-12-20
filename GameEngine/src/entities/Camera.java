@@ -24,6 +24,7 @@ public class Camera {
 	 * Changes the position of the camera depending on actions
 	 */
 	public void move() {
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_COMMA)) {
 			speed = 2f;
 		}
@@ -46,12 +47,12 @@ public class Camera {
 			yaw -= degree;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Q)) {
-			position.z += speed * 1.5f * Math.sin(Math.toRadians(-yaw));
-			position.x -= speed * 1.5f * Math.cos(Math.toRadians(-yaw));
+			position.z -= speed * 1.5f * Math.sin(Math.toRadians(yaw));
+			position.x -= speed * 1.5f * Math.cos(Math.toRadians(yaw));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_E)) {
-			position.z -= speed * 1.5f * Math.sin(Math.toRadians(-yaw));
-			position.x += speed * 1.5f *Math.cos(Math.toRadians(-yaw));
+			position.z += speed * 1.5f * Math.sin(Math.toRadians(yaw));
+			position.x += speed * 1.5f * Math.cos(Math.toRadians(yaw));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Z)) {
 			position.y += speed;
