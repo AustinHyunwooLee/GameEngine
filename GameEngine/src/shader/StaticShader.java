@@ -66,7 +66,10 @@ public class StaticShader extends ShaderProgram{
 		super.loadVector(location_lightColor, light.getColor());
 	}
 	
-	
+	public void loadShineVariables(float shineDamper, float reflectivity) {
+		super.loadFloat(location_shineDamper, shineDamper);
+		super.loadFloat(location_reflectivity, reflectivity); 
+	}
 	
 	/**
 	 * Loads the transformation matrix into the uniform variables
