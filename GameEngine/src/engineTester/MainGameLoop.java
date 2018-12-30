@@ -1,5 +1,9 @@
 package engineTester;
  
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -10,6 +14,7 @@ import models.RawModel;
 import models.TexturedModels;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
+import renderEngine.MasterRenderer;
 import renderEngine.OBJLoader;
 import renderEngine.Renderer;
 import shader.StaticShader;
@@ -21,10 +26,7 @@ public class MainGameLoop {
  
         DisplayManager.createDisplay();
         Loader loader = new Loader();
-        
-        StaticShader shader = new StaticShader();
         Camera camera = new Camera();
-        Renderer renderer = new Renderer(shader);
         
          
         
@@ -41,21 +43,34 @@ public class MainGameLoop {
         //Currently can only spawn in one light source
         Light light = new Light(new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
         
+        
+        MasterRenderer renderer = new MasterRenderer();
+        
+        List<Entity> dragons = new ArrayList<>();
+        Random random = new Random();
+        dragons.add(new Entity(texturedModel, new Vector3f(0, 0, -25), 0, 0, 0, 1f));
+        for(int i = 0; i < 10; i++) {
+        	float x = random.nextFloat() * 100 - 50;
+        	float y = random.nextFloat() * 100 - 50;
+        	float z = random.nextFloat() * -300;
+        	dragons.add(new Entity(texturedModel, new Vector3f(x, y, z), 0f, 0f, 0f, 1f));
+        }
+        System.out.println(dragons.size());
+        
+        
         while(!Display.isCloseRequested()){
         	camera.move();
 //        	entity.increasePosition(0, 0, -.002f);
 //        	entity.increaseRotation(0, 0, 0);
             //game logic
-        	entity.increaseRotation(0, 0.9f, 0);
-            renderer.prepare();
-            shader.start();
-            shader.loadViewMatrix(camera);
-            shader.loadLight(light);
-            renderer.render(entity, shader);
-            shader.stop();
+//        	entity.increaseRotation(0, 0.9f, 0);
+        	for(Entity dragon : dragons) {
+        		renderer.processEntity(dragon);
+        	}
+        	renderer.render(light, camera);
             DisplayManager.updateDisplay();         
         }
-        shader.cleanUp();
+        renderer.cleanUp();
         loader.cleanUp();
         DisplayManager.closeDisplay();
  
